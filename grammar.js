@@ -26,7 +26,9 @@ module.exports = grammar({
 
   extras: $ => [/\s/, $.line_comment, $.block_comment, $.rem_comment],
 
-  // NOTE: no `word` rule — it breaks case-insensitive regex keyword matching
+  // word rule ensures keywords only match at word boundaries
+  // (prevents 'add' from matching inside 'AddDateName')
+  word: $ => $.identifier,
 
   rules: {
     source_file: $ => repeat($._item),
