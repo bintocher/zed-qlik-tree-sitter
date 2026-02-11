@@ -15,6 +15,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "table_label"
+        },
+        {
+          "type": "SYMBOL",
           "name": "function_call"
         },
         {
@@ -68,6 +72,10 @@
         {
           "type": "STRING",
           "value": ","
+        },
+        {
+          "type": "STRING",
+          "value": ":"
         }
       ]
     },
@@ -978,9 +986,39 @@
         ]
       }
     },
+    "table_label": {
+      "type": "PREC",
+      "value": 1,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "identifier"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "bracket_field"
+                }
+              ]
+            }
+          },
+          {
+            "type": "STRING",
+            "value": ":"
+          }
+        ]
+      }
+    },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z_#][a-zA-Z0-9_#.]*"
+      "value": "[\\p{L}_#%][\\p{L}\\p{N}_#%.]*"
     }
   },
   "extras": [

@@ -34,6 +34,7 @@ module.exports = grammar({
     source_file: $ => repeat($._item),
 
     _item: $ => choice(
+      $.table_label,
       $.function_call,
       $.single_quoted_string,
       $.double_quoted_string,
@@ -48,6 +49,7 @@ module.exports = grammar({
       $.identifier,
       ';',
       ',',
+      ':',
     ),
 
     // ─── Comments ───────────────────────────────────────────
@@ -164,7 +166,13 @@ module.exports = grammar({
       ')',
     )),
 
-    // ─── Identifiers ────────────────────────────────────────
-    identifier: $ => /[a-zA-Z_#][a-zA-Z0-9_#.]*/,
+    // ─── Table labels (TableName: before LOAD/SELECT) ───────
+    table_label: $ => prec(1, seq(
+      field('name', choice($.identifier, $.bracket_field)),
+      ':',
+    )),
+
+    // ─── Identifiers (Unicode-aware for Cyrillic etc.) ────
+    identifier: $ => /[\p{L}_#%][\p{L}\p{N}_#%.]*/,
   },
 });

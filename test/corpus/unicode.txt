@@ -1,0 +1,79 @@
+===
+Cyrillic identifier
+===
+
+SET vДата = 'Hello';
+
+---
+
+(source_file
+  (keyword)
+  (identifier)
+  (comparison_operator)
+  (single_quoted_string))
+
+===
+Cyrillic table label
+===
+
+МАР_Фрибет:
+MAPPING LOAD a, b FROM file;
+
+---
+
+(source_file
+  (table_label
+    name: (identifier))
+  (keyword)
+  (keyword)
+  (identifier)
+  (identifier)
+  (keyword)
+  (identifier))
+
+===
+Table label with bracket field
+===
+
+[Вид ставки]:
+load * inline [a,b];
+
+---
+
+(source_file
+  (table_label
+    name: (bracket_field))
+  (keyword)
+  (arithmetic_operator)
+  (keyword)
+  (bracket_field))
+
+===
+ASCII table label
+===
+
+tempCalendar:
+LOAD a, b;
+
+---
+
+(source_file
+  (table_label
+    name: (identifier))
+  (keyword)
+  (identifier)
+  (identifier))
+
+===
+Percent variable
+===
+
+LOAD a AS %MEKey;
+
+---
+
+(source_file
+  (keyword)
+  (identifier)
+  (keyword)
+  (identifier))
