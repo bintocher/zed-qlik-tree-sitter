@@ -1,124 +1,5 @@
 [
   {
-    "type": "control_keyword",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "control_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "arithmetic_operator",
-          "named": true
-        },
-        {
-          "type": "bracket_field",
-          "named": true
-        },
-        {
-          "type": "comparison_operator",
-          "named": true
-        },
-        {
-          "type": "control_keyword",
-          "named": true
-        },
-        {
-          "type": "double_quoted_string",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "logical_operator",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "parenthesized",
-          "named": true
-        },
-        {
-          "type": "single_quoted_string",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "expression_statement",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "arithmetic_operator",
-          "named": true
-        },
-        {
-          "type": "bracket_field",
-          "named": true
-        },
-        {
-          "type": "comparison_operator",
-          "named": true
-        },
-        {
-          "type": "double_quoted_string",
-          "named": true
-        },
-        {
-          "type": "function_call",
-          "named": true
-        },
-        {
-          "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "logical_operator",
-          "named": true
-        },
-        {
-          "type": "macro",
-          "named": true
-        },
-        {
-          "type": "number",
-          "named": true
-        },
-        {
-          "type": "parenthesized",
-          "named": true
-        },
-        {
-          "type": "single_quoted_string",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "function_call",
     "named": true,
     "fields": {
@@ -159,10 +40,6 @@
         },
         {
           "type": "identifier",
-          "named": true
-        },
-        {
-          "type": "logical_operator",
           "named": true
         },
         {
@@ -236,10 +113,6 @@
           "named": true
         },
         {
-          "type": "logical_operator",
-          "named": true
-        },
-        {
           "type": "macro",
           "named": true
         },
@@ -259,17 +132,13 @@
     }
   },
   {
-    "type": "script_keyword",
+    "type": "source_file",
     "named": true,
-    "fields": {}
-  },
-  {
-    "type": "script_statement",
-    "named": true,
+    "root": true,
     "fields": {},
     "children": {
       "multiple": true,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "arithmetic_operator",
@@ -296,10 +165,6 @@
           "named": true
         },
         {
-          "type": "logical_operator",
-          "named": true
-        },
-        {
           "type": "macro",
           "named": true
         },
@@ -312,35 +177,7 @@
           "named": true
         },
         {
-          "type": "script_keyword",
-          "named": true
-        },
-        {
           "type": "single_quoted_string",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "source_file",
-    "named": true,
-    "root": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "control_statement",
-          "named": true
-        },
-        {
-          "type": "expression_statement",
-          "named": true
-        },
-        {
-          "type": "script_statement",
           "named": true
         }
       ]
@@ -399,10 +236,6 @@
     "type": "line_comment",
     "named": true,
     "extra": true
-  },
-  {
-    "type": "logical_operator",
-    "named": true
   },
   {
     "type": "macro",

@@ -7,24 +7,36 @@ SET vMyVar = 'Hello';
 ---
 
 (source_file
-  (script_statement
-    (script_keyword)
-    (identifier)
-    (comparison_operator)
-    (single_quoted_string)))
+  (identifier)
+  (identifier)
+  (comparison_operator)
+  (single_quoted_string))
 
 ===
-LET variable
+Function call
 ===
 
-LET vCount = 10;
+Sum(Amount);
 
 ---
 
 (source_file
-  (script_statement
-    (script_keyword)
-    (identifier)
-    (comparison_operator)
-    (number
-      (integer))))
+  (function_call
+    name: (identifier)
+    (identifier)))
+
+===
+Nested function call
+===
+
+Num(Sum(Amount), '#,##0');
+
+---
+
+(source_file
+  (function_call
+    name: (identifier)
+    (function_call
+      name: (identifier)
+      (identifier))
+    (single_quoted_string)))
