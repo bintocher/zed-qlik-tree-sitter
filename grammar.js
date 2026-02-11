@@ -130,12 +130,27 @@ module.exports = grammar({
       // Metadata
       kw('comment'), kw('tag'), kw('untag'),
       kw('derive'), kw('declare'), kw('measure'), kw('dimension'),
+      // Relationships
+      kw('create'), kw('relationship'),
+      // Autonumber
+      kw('autonumber'),
+      // SQL metadata
+      kw('sqlcolumns'), kw('sqltables'), kw('sqltypes'),
+      // Other statements
+      kw('qsl'), kw('custom'), kw('customconnect'), kw('bdi'),
+      kw('import'), kw('live'),
+      kw('script'),
+      // Force statement
+      kw('capitalization'), kw('upper'), kw('lower'), kw('mixed'),
+      // Buffer options
+      kw('incremental'), kw('stale'), kw('after'),
       // Misc
       kw('alias'), kw('asc'), kw('desc'), kw('with'), kw('on'),
       kw('trace'), kw('sleep'), kw('execute'), kw('include'),
       kw('search'), kw('flushlog'),
       kw('nullasvalue'), kw('nullasnull'),
       kw('force'), kw('null'), kw('value'),
+      kw('total'),
     ))),
 
     // ─── Parenthesized expressions ──────────────────────────
