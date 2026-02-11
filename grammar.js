@@ -7,7 +7,7 @@
 /// <reference types="tree-sitter-cli/dsl" />
 // @ts-check
 
-// Helper: case-insensitive pattern (for REM only)
+// Case-insensitive keyword helper: kw('load') → /[lL][oO][aA][dD]/
 function kw(word) {
   return new RegExp(
     word
@@ -26,6 +26,8 @@ module.exports = grammar({
 
   extras: $ => [/\s/, $.line_comment, $.block_comment, $.rem_comment],
 
+  // NOTE: no `word` rule — it breaks case-insensitive regex keyword matching
+
   rules: {
     source_file: $ => repeat($._item),
 
@@ -38,6 +40,8 @@ module.exports = grammar({
       $.number,
       $.comparison_operator,
       $.arithmetic_operator,
+      $.logical_operator,
+      $.keyword,
       $.parenthesized,
       $.identifier,
       ';',
@@ -49,7 +53,7 @@ module.exports = grammar({
 
     block_comment: $ => token(seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/')),
 
-    rem_comment: $ => token(prec(2, seq(kw('rem'), /\s[^;]*/, ';'))),
+    rem_comment: $ => token(prec(5, seq(kw('rem'), /\s[^;]*/, ';'))),
 
     // ─── Strings & Literals ─────────────────────────────────
     single_quoted_string: $ => token(seq("'", /[^']*/, "'")),
@@ -68,10 +72,69 @@ module.exports = grammar({
     // ─── Macros ─────────────────────────────────────────────
     macro: $ => token(seq('$(', /[^)]*/, ')')),
 
-    // ─── Operators ──────────────────────────────────────────
+    // ─── Operators (symbols) ────────────────────────────────
     comparison_operator: $ => token(choice('<>', '<=', '>=', '<<', '>>', '<', '>', '=')),
 
     arithmetic_operator: $ => token(choice('&', '+', '-', '*', '/')),
+
+    // ─── Operators (word-based, case-insensitive) ───────────
+    logical_operator: $ => token(prec(3, choice(
+      kw('and'), kw('or'), kw('not'), kw('xor'), kw('like'),
+      kw('precedes'), kw('follows'),
+      kw('bitand'), kw('bitnot'), kw('bitor'), kw('bitxor'),
+    ))),
+
+    // ─── All keywords in ONE token (longest match wins) ─────
+    keyword: $ => token(prec(2, choice(
+      // Control flow
+      kw('if'), kw('then'), kw('else'), kw('elseif'),
+      kw('endif'), kw('end'),
+      kw('sub'), kw('endsub'),
+      kw('for'), kw('to'), kw('step'), kw('next'),
+      kw('do'), kw('loop'), kw('while'), kw('until'),
+      kw('each'), kw('in'),
+      kw('exit'), kw('call'),
+      kw('switch'), kw('case'), kw('default'), kw('endswitch'),
+      // Data loading
+      kw('load'), kw('select'), kw('store'), kw('into'),
+      kw('from'), kw('where'), kw('resident'), kw('inline'),
+      kw('autogenerate'), kw('as'), kw('distinct'),
+      kw('group'), kw('by'), kw('order'),
+      // Variables
+      kw('set'), kw('let'),
+      // Connections
+      kw('binary'), kw('connect'), kw('disconnect'),
+      kw('directory'), kw('lib'), kw('sql'), kw('odbc'), kw('oledb'),
+      kw('direct'), kw('query'),
+      // Table operations
+      kw('drop'), kw('rename'), kw('table'), kw('tables'),
+      kw('field'), kw('fields'),
+      kw('qualify'), kw('unqualify'),
+      kw('map'), kw('unmap'), kw('using'),
+      kw('star'), kw('is'),
+      kw('loosen'), kw('inputfield'),
+      // Prefixes & join
+      kw('mapping'), kw('concatenate'), kw('noconcatenate'),
+      kw('crosstable'), kw('hierarchy'), kw('hierarchybelongsto'),
+      kw('intervalmatch'), kw('generic'), kw('semantic'),
+      kw('join'), kw('keep'), kw('left'), kw('right'),
+      kw('inner'), kw('outer'),
+      kw('buffer'), kw('replace'), kw('add'),
+      kw('bundle'), kw('info'),
+      kw('sample'), kw('first'), kw('merge'),
+      kw('unless'), kw('when'), kw('only'),
+      // Section
+      kw('section'), kw('access'), kw('application'),
+      // Metadata
+      kw('comment'), kw('tag'), kw('untag'),
+      kw('derive'), kw('declare'), kw('measure'), kw('dimension'),
+      // Misc
+      kw('alias'), kw('asc'), kw('desc'), kw('with'), kw('on'),
+      kw('trace'), kw('sleep'), kw('execute'), kw('include'),
+      kw('search'), kw('flushlog'),
+      kw('nullasvalue'), kw('nullasnull'),
+      kw('force'), kw('null'), kw('value'),
+    ))),
 
     // ─── Parenthesized expressions ──────────────────────────
     parenthesized: $ => seq('(', repeat($._item), ')'),

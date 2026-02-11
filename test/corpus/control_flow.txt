@@ -7,7 +7,21 @@ SET vMyVar = 'Hello';
 ---
 
 (source_file
+  (keyword)
   (identifier)
+  (comparison_operator)
+  (single_quoted_string))
+
+===
+set variable (lowercase)
+===
+
+set vMyVar = 'Hello';
+
+---
+
+(source_file
+  (keyword)
   (identifier)
   (comparison_operator)
   (single_quoted_string))
@@ -40,3 +54,34 @@ Num(Sum(Amount), '#,##0');
       name: (identifier)
       (identifier))
     (single_quoted_string)))
+
+===
+LOAD inline
+===
+
+LOAD * inline [a,b
+1,2];
+
+---
+
+(source_file
+  (keyword)
+  (arithmetic_operator)
+  (keyword)
+  (bracket_field))
+
+===
+Mapping LOAD mixed case
+===
+
+Mapping LOAD a, b FROM file;
+
+---
+
+(source_file
+  (keyword)
+  (keyword)
+  (identifier)
+  (identifier)
+  (keyword)
+  (identifier))

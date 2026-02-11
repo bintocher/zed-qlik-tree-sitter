@@ -43,6 +43,14 @@
           "named": true
         },
         {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "logical_operator",
+          "named": true
+        },
+        {
           "type": "macro",
           "named": true
         },
@@ -113,6 +121,14 @@
           "named": true
         },
         {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "logical_operator",
+          "named": true
+        },
+        {
           "type": "macro",
           "named": true
         },
@@ -162,6 +178,14 @@
         },
         {
           "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "logical_operator",
           "named": true
         },
         {
@@ -233,9 +257,17 @@
     "named": true
   },
   {
+    "type": "keyword",
+    "named": true
+  },
+  {
     "type": "line_comment",
     "named": true,
     "extra": true
+  },
+  {
+    "type": "logical_operator",
+    "named": true
   },
   {
     "type": "macro",
