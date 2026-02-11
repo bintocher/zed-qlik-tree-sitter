@@ -1,0 +1,11 @@
+===
+Macro variable
+===
+
+$(vMyVariable);
+
+---
+
+(source_file
+  (expression_statement
+    (macro)))

@@ -1,0 +1,30 @@
+{
+  "grammars": [
+    {
+      "name": "qlik",
+      "camelCase": false,
+      "scope": "source.qvs",
+      "path": ".",
+      "file-types": ["qvs"],
+      "highlights": "queries/highlights.scm",
+      "injection-regex": "^qlik$"
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "license": "MIT",
+    "description": "Tree-sitter grammar for Qlik script language",
+    "authors": [
+      {
+        "name": "bintocher"
+      }
+    ],
+    "links": {
+      "repository": "https://github.com/bintocher/zed-qlik-tree-sitter"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "node": true
+  }
+}

@@ -1,0 +1,35 @@
+===
+Single quoted string
+===
+
+'hello world';
+
+---
+
+(source_file
+  (expression_statement
+    (single_quoted_string)))
+
+===
+Double quoted string
+===
+
+"field name";
+
+---
+
+(source_file
+  (expression_statement
+    (double_quoted_string)))
+
+===
+Bracket field
+===
+
+[My Field Name];
+
+---
+
+(source_file
+  (expression_statement
+    (bracket_field)))

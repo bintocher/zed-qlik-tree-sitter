@@ -1,0 +1,30 @@
+===
+SET variable
+===
+
+SET vMyVar = 'Hello';
+
+---
+
+(source_file
+  (script_statement
+    (script_keyword)
+    (identifier)
+    (comparison_operator)
+    (single_quoted_string)))
+
+===
+LET variable
+===
+
+LET vCount = 10;
+
+---
+
+(source_file
+  (script_statement
+    (script_keyword)
+    (identifier)
+    (comparison_operator)
+    (number
+      (integer))))

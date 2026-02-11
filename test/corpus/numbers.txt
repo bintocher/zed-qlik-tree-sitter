@@ -1,0 +1,25 @@
+===
+Integer
+===
+
+42;
+
+---
+
+(source_file
+  (expression_statement
+    (number
+      (integer))))
+
+===
+Float
+===
+
+3.14;
+
+---
+
+(source_file
+  (expression_statement
+    (number
+      (float))))
